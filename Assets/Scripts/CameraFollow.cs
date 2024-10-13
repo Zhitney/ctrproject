@@ -8,10 +8,11 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     
     // Offset from the target's position
-    public Vector3 offset;
+       public Vector3 offset = new Vector3(0, 2, -7);
 
     // How smooth the camera follows the target
     public float smoothSpeed = 0.125f;
+    public float rotationSpeed = 5f;
 
     void LateUpdate()
     {
@@ -19,15 +20,21 @@ public class CameraFollow : MonoBehaviour
             return;
 
         // Desired position is target's position plus the offset
-        Vector3 desiredPosition = target.position + offset;
+         if (target == null)
+            return;
 
-        // Smooth the camera movement
+        // Calculate the desired position of the camera relative to the car's orientation
+        Vector3 desiredPosition = target.TransformPoint(offset);
+
+        // Smoothly interpolate the camera's position for smoother following
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
 
         // Update the camera's position
         transform.position = smoothedPosition;
 
-        // Optionally, if you want the camera to always look at the target, uncomment the next line
-        // transform.LookAt(target);
+        // Smoothly rotate the camera to look at the car
+        Quaternion targetRotation = Quaternion.LookRotation(target.position - transform.position);
+        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+    
     }
 }
