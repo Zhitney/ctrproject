@@ -4,30 +4,29 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    // The target object that the camera will follow
+    // Target object that the camera will follow
     public Transform target;
-    
+
     // Offset from the target's position
-       public Vector3 offset = new Vector3(0, 2, -7);
+    public Vector3 offset = new Vector3(0, 2, -5);
 
     // How smooth the camera follows the target
     public float smoothSpeed = 0.125f;
     public float rotationSpeed = 5f;
 
-    void LateUpdate()
+    // Velocity for SmoothDamp
+    private Vector3 velocity = Vector3.zero;
+
+    void FixedUpdate()
     {
         if (target == null)
-            return;
-
-        // Desired position is target's position plus the offset
-         if (target == null)
             return;
 
         // Calculate the desired position of the camera relative to the car's orientation
         Vector3 desiredPosition = target.TransformPoint(offset);
 
-        // Smoothly interpolate the camera's position for smoother following
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+        // Smoothly move to the desired position using SmoothDamp
+        Vector3 smoothedPosition = Vector3.SmoothDamp(transform.position, desiredPosition, ref velocity, smoothSpeed);
 
         // Update the camera's position
         transform.position = smoothedPosition;
@@ -35,6 +34,5 @@ public class CameraFollow : MonoBehaviour
         // Smoothly rotate the camera to look at the car
         Quaternion targetRotation = Quaternion.LookRotation(target.position - transform.position);
         transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-    
     }
 }
