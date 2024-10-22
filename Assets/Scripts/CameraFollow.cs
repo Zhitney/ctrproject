@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
     
     // Offset from the target's position
-    public Vector3 offset = new Vector3(0, 2, -7);
+       public Vector3 offset = new Vector3(0, 2, -7);
 
     // How smooth the camera follows the target
     public float smoothSpeed = 0.125f;
@@ -19,13 +19,17 @@ public class CameraFollow : MonoBehaviour
         if (target == null)
             return;
 
+        // Desired position is target's position plus the offset
+         if (target == null)
+            return;
+
         // Calculate the desired position of the camera relative to the car's orientation
         Vector3 desiredPosition = target.TransformPoint(offset);
 
         // Smoothly interpolate the camera's position for smoother following
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
 
-        // Update the camera's positionn
+        // Update the camera's position
         transform.position = smoothedPosition;
 
         // Smoothly rotate the camera to look at the car
