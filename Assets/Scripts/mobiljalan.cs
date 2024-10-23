@@ -21,6 +21,9 @@ public class mobiljalan : MonoBehaviour
 
     public float maxSteeringAngle = 30f;    // Maximum steering angle for the front wheels
 
+    // Reference to the smoke particle system
+    public ParticleSystem smokeParticleSystem;
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -32,6 +35,7 @@ public class mobiljalan : MonoBehaviour
         HandleSteering();
         RotateWheels();
         UpdateSteering();
+        UpdateSmoke();
     }
 
     // Function to handle movement
@@ -81,8 +85,11 @@ public class mobiljalan : MonoBehaviour
         float steeringAngle = maxSteeringAngle * turnInput;
 
         // Adjust only Y-axis rotation for the front wheels (left and right turn)
-        GreenFrontLeft.localRotation = Quaternion.Euler(0f, steeringAngle, 0f);
-        GreenFrontRight.localRotation = Quaternion.Euler(0f, steeringAngle, 0f);
+        Quaternion steeringRotation = Quaternion.Euler(0f, steeringAngle, 0f);
+
+        // Combine the steering rotation with the existing rotation on the X-axis
+        GreenFrontLeft.localRotation = steeringRotation * Quaternion.Euler(GreenFrontLeft.localRotation.eulerAngles.x, 0f, 0f);
+        GreenFrontRight.localRotation = steeringRotation * Quaternion.Euler(GreenFrontRight.localRotation.eulerAngles.x, 0f, 0f);
     }
 
     private void HandleSteering()
@@ -101,5 +108,17 @@ public class mobiljalan : MonoBehaviour
             Quaternion turnRotation = Quaternion.Euler(0f, turn, 0f);
             rb.MoveRotation(rb.rotation * turnRotation);
         }
+    }
+
+    private void UpdateSmoke()
+    {
+        // Check if the car is moving and turning
+        float moveInput = Mathf.Abs(Input.GetAxis("Vertical"));
+        float turnInput = Mathf.Abs(Input.GetAxis("Horizontal"));
+        bool isTurningAndMoving = moveInput > 0 && turnInput > 0.1f;
+
+        // Enable or disable smoke particles based on turning and moving status
+        var emission = smokeParticleSystem.emission;
+        emission.enabled = isTurningAndMoving;
     }
 }
