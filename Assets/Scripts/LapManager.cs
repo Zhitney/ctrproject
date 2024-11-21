@@ -47,36 +47,38 @@ public class LapManager : MonoBehaviour
         // Tambahkan log untuk memeriksa apakah mobil dan garis berinteraksi
         Debug.Log("Something entered the trigger: " + other.name);
 
-        if (other.CompareTag("Player") && !lapDetected) // Pastikan hanya mobil pemain yang dihitung dan belum terdeteksi di lap ini
+        //if (other.CompareTag("Player") && !lapDetected) // Pastikan hanya mobil pemain yang dihitung dan belum terdeteksi di lap ini
+        if (other.gameObject.name == "raceCarGreen")
         {
+            Debug.Log("Masuk");
             Rigidbody carRb = other.GetComponent<Rigidbody>();
             Vector3 velocity = carRb.velocity;
 
             // Pastikan mobil bergerak maju
             Debug.Log("Player Velocity: " + velocity);
-            if (Vector3.Dot(velocity, startFinishLine.forward) > 0)
+            //if (Vector3.Dot(velocity, startFinishLine.forward) > 0)
+            //{
+            Debug.Log("Lap detected!");
+
+            // Deteksi jika mobil melewati garis
+            if (currentLap < totalLaps)
             {
-                Debug.Log("Lap detected!");
+                lapDetected = true;                // Set flag lap detected
+                currentLap++;                      // Tambah lap saat ini
+                float lapTime = Time.time - lapStartTime; // Hitung waktu lap
+                lapTimes.Add(lapTime);             // Simpan waktu lap
+                UpdateLapUI();                     // Update UI lap
+                lapStartTime = Time.time;          // Mulai waktu untuk lap berikutnya
 
-                // Deteksi jika mobil melewati garis
-                if (currentLap < totalLaps)
+                Debug.Log("Current Lap: " + currentLap);
+
+                // Jika lap sudah selesai
+                if (currentLap == totalLaps)
                 {
-                    lapDetected = true;                // Set flag lap detected
-                    currentLap++;                      // Tambah lap saat ini
-                    float lapTime = Time.time - lapStartTime; // Hitung waktu lap
-                    lapTimes.Add(lapTime);             // Simpan waktu lap
-                    UpdateLapUI();                     // Update UI lap
-                    lapStartTime = Time.time;          // Mulai waktu untuk lap berikutnya
-
-                    Debug.Log("Current Lap: " + currentLap);
-
-                    // Jika lap sudah selesai
-                    if (currentLap == totalLaps)
-                    {
-                        FinishRace();                  // Panggil fungsi untuk akhir balapan
-                    }
+                    FinishRace();                  // Panggil fungsi untuk akhir balapan
                 }
             }
+            //}
         }
     }
 
