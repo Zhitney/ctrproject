@@ -120,5 +120,6 @@ public class mobiljalan : MonoBehaviour
         // Enable or disable smoke particles based on turning and moving status
         var emission = smokeParticleSystem.emission;
         emission.enabled = isTurningAndMoving;
+        //dsdsaddsadsadsa
     }
 }
