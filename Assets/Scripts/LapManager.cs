@@ -17,12 +17,17 @@ public class LapManager : MonoBehaviour
     private float lapStartTime;                         // Waktu mulai lap
     private List<float> lapTimes = new List<float>();   // List untuk menyimpan waktu setiap lap
     private bool lapDetected = false;                   // Flag untuk mendeteksi crossing garis
+    public List<Transform> checkpoints;     // Daftar checkpoint pada track
+    private HashSet<int> checkpointsPassed; // Set untuk melacak checkpoint yang dilewati
+
 
     private void Start()
     {
         gameStartTime = Time.time;
         lapStartTime = gameStartTime;
         UpdateLapUI();                                  // Inisialisasi UI saat game dimulai
+        checkpointsPassed = new HashSet<int>(); // Reset checkpoint yang sudah dilewati
+
     }
 
     private void Update()
@@ -41,46 +46,71 @@ public class LapManager : MonoBehaviour
         }
     }
 
+    public void CheckpointReached(int checkpointIndex)
+    {
+        if (!checkpointsPassed.Contains(checkpointIndex))
+        {
+            checkpointsPassed.Add(checkpointIndex);
+            Debug.Log($"Checkpoint {checkpointIndex} dilewati. Total: {checkpointsPassed.Count}/{checkpoints.Count}");
+        }
+        else
+        {
+            Debug.Log($"Checkpoint {checkpointIndex} sudah dilewati sebelumnya.");
+        }
+
+        if (checkpointsPassed.Count == checkpoints.Count)
+        {
+            Debug.Log("Semua checkpoint dilewati!");
+        }
+    }
+
+
+    private void LapCompleted()
+    {
+        if (currentLap < totalLaps)
+        {
+            lapDetected = true;                // Set flag lap detected
+            currentLap++;                      // Tambah lap saat ini
+            float lapTime = Time.time - lapStartTime; // Hitung waktu lap
+            lapTimes.Add(lapTime);             // Simpan waktu lap
+            UpdateLapUI();                     // Update UI lap
+            lapStartTime = Time.time;          // Mulai waktu untuk lap berikutnya
+
+            Debug.Log("Current Lap: " + currentLap);
+
+            // Reset checkpoint untuk lap berikutnya
+            checkpointsPassed.Clear();         // Gunakan Clear() untuk membersihkan set
+            lapDetected = false;               // Reset flag setelah reset checkpoint
+
+            // Jika lap sudah selesai
+            if (currentLap == totalLaps)
+            {
+                FinishRace();                  // Panggil fungsi untuk akhir balapan
+            }
+        }
+    }
+
+
     // Trigger ketika mobil melewati garis start/finish
     private void OnTriggerEnter(Collider other)
     {
-        // Tambahkan log untuk memeriksa apakah mobil dan garis berinteraksi
-        Debug.Log("Something entered the trigger: " + other.name);
-
-        //if (other.CompareTag("Player") && !lapDetected) // Pastikan hanya mobil pemain yang dihitung dan belum terdeteksi di lap ini
         if (other.gameObject.name == "raceCarGreen")
         {
-            Debug.Log("Masuk");
-            Rigidbody carRb = other.GetComponent<Rigidbody>();
-            Vector3 velocity = carRb.velocity;
+            Debug.Log("Masuk garis Start/Finish.");
 
-            // Pastikan mobil bergerak maju
-            Debug.Log("Player Velocity: " + velocity);
-            //if (Vector3.Dot(velocity, startFinishLine.forward) > 0)
-            //{
-            Debug.Log("Lap detected!");
-
-            // Deteksi jika mobil melewati garis
-            if (currentLap < totalLaps)
+            // Jika semua checkpoint sudah dilewati dan tidak dalam keadaan lapDetected
+            if (!lapDetected && checkpointsPassed.Count == checkpoints.Count)
             {
-                lapDetected = true;                // Set flag lap detected
-                currentLap++;                      // Tambah lap saat ini
-                float lapTime = Time.time - lapStartTime; // Hitung waktu lap
-                lapTimes.Add(lapTime);             // Simpan waktu lap
-                UpdateLapUI();                     // Update UI lap
-                lapStartTime = Time.time;          // Mulai waktu untuk lap berikutnya
-
-                Debug.Log("Current Lap: " + currentLap);
-
-                // Jika lap sudah selesai
-                if (currentLap == totalLaps)
-                {
-                    FinishRace();                  // Panggil fungsi untuk akhir balapan
-                }
+                Debug.Log("Lap selesai karena semua checkpoint dilewati.");
+                LapCompleted();
             }
-            //}
+            else if (checkpointsPassed.Count != checkpoints.Count)
+            {
+                Debug.Log("Belum semua checkpoint dilewati. Lap tidak dihitung.");
+            }
         }
     }
+
 
 
     // Update UI Lap

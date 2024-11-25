@@ -9,6 +9,7 @@ public class mobiljalan : MonoBehaviour
     public float acceleration = 5f;         // How fast the car accelerates
     public float deceleration = 5f;         // How fast the car decelerates
     public float maxSpeed = 20f;            // Maximum speed the car can reach
+    public float brakingForce = 20f; 
     private float currentSpeed = 0f;        // Current speed of the car
     private Rigidbody rb;                   // Reference to the Rigidbody component
 
@@ -33,6 +34,7 @@ public class mobiljalan : MonoBehaviour
     {
         HandleMovement();
         HandleSteering();
+        HandleBraking();
         RotateWheels();
         UpdateSteering();
         UpdateSmoke();
@@ -63,6 +65,18 @@ public class mobiljalan : MonoBehaviour
         rb.MovePosition(rb.position + moveDirection);
     }
 
+    private void HandleBraking()
+    {
+        // Check if the space key is pressed
+        if (Input.GetKey(KeyCode.Space))
+        {
+            // Apply braking force
+            currentSpeed = Mathf.MoveTowards(currentSpeed, 0, brakingForce * Time.fixedDeltaTime);
+
+            // Optional: Reduce velocity directly for an instant stop
+            rb.velocity = Vector3.zero;
+        }
+    }
     // Function to rotate the wheels based on speed
     private void RotateWheels()
     {
