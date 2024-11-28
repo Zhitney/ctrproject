@@ -67,6 +67,7 @@
     <Compile Include="Assets\PathCreator\Core\Runtime\Objects\BezierPath.cs" />
     <Compile Include="Assets\Scripts\LapManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
+    <Compile Include="Assets\Scripts\checkpoint.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\mobiljalan.cs" />
   </ItemGroup>
