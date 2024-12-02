@@ -28,6 +28,7 @@ public class mobiljalan : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
 
     void FixedUpdate()
