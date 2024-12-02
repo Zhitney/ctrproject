@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\SmokeControl.cs" />
     <Compile Include="Assets\PathCreator\Core\Runtime\Objects\BezierPath.cs" />
+    <Compile Include="Assets\minimapu.cs" />
     <Compile Include="Assets\Scripts\LapManager.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
     <Compile Include="Assets\Scripts\checkpoint.cs" />
