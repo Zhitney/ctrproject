@@ -10,6 +10,12 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene("nascarTrack");
     }
 
+    public void LoadCarSelect()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
+
     public void QuitGame()
     {
         Application.Quit();
