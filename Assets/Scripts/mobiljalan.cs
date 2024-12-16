@@ -25,10 +25,34 @@ public class mobiljalan : MonoBehaviour
     // Reference to the smoke particle system
     public ParticleSystem smokeParticleSystem;
 
+    public float saveInterval = 0.1f;       // Interval to save state (seconds)
+    public float rewindDuration = 5f;      // How far back to rewind (seconds)
+    private Queue<MobilState> stateHistory = new Queue<MobilState>();
+    private float lastRewindTime = 1f;      // Track the last time rewind occurred
+    public float rewindCooldown = 10f; 
+
+    // Struct to store state
+    private struct MobilState
+    {
+        public Vector3 position;
+        public Quaternion rotation;
+        public float speed;
+        public float time;
+
+        public MobilState(Vector3 pos, Quaternion rot, float spd, float t)
+        {
+            position = pos;
+            rotation = rot;
+            speed = spd;
+            time = t;
+        }
+    }
+
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.collisionDetectionMode = CollisionDetectionMode.Continuous;
+        InvokeRepeating(nameof(SaveState), 0f, saveInterval);
     }
 
     void FixedUpdate()
@@ -39,6 +63,10 @@ public class mobiljalan : MonoBehaviour
         RotateWheels();
         UpdateSteering();
         UpdateSmoke();
+        if (Input.GetKeyDown(KeyCode.R) && Time.time >= lastRewindTime + rewindCooldown)
+        {
+            Rewind();
+        }
     }
 
     // Function to handle movement
@@ -65,6 +93,7 @@ public class mobiljalan : MonoBehaviour
         Vector3 moveDirection = transform.forward * currentSpeed * Time.fixedDeltaTime;
         rb.MovePosition(rb.position + moveDirection);
     }
+    
 
     private void HandleBraking()
     {
@@ -136,4 +165,43 @@ public class mobiljalan : MonoBehaviour
         var emission = smokeParticleSystem.emission;
         emission.enabled = isTurningAndMoving;
     }
+
+    private void SaveState()
+    {
+        // Save current state with the current time
+        stateHistory.Enqueue(new MobilState(transform.position, transform.rotation, currentSpeed, Time.time));
+
+        // Remove states older than rewindDuration
+        while (stateHistory.Count > 0 && Time.time - stateHistory.Peek().time > rewindDuration)
+        {
+            stateHistory.Dequeue();
+        }
+    }
+
+    public void Rewind()
+    {
+        if (stateHistory.Count > 0)
+        {
+            // Get the most recent valid state
+            MobilState state = stateHistory.Dequeue();
+            transform.position = state.position;
+            transform.rotation = state.rotation;
+            currentSpeed = state.speed;
+
+            // Stop the Rigidbody's velocity
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+
+            // Update the last rewind time
+            lastRewindTime = Time.time;
+
+            Debug.Log("Rewinded to: " + state.time);
+        }
+        else
+        {
+            Debug.Log("No valid state to rewind to.");
+        }
+    }
+
+
 }
