@@ -94,7 +94,7 @@ public class LapManager : MonoBehaviour
     // Trigger ketika mobil melewati garis start/finish
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "raceCarGreen")
+        if (other.CompareTag("Player")) // Memeriksa tag "Player"
         {
             Debug.Log("Masuk garis Start/Finish.");
 
