@@ -28,8 +28,9 @@ public class mobiljalan : MonoBehaviour
     public float saveInterval = 0.1f;       // Interval to save state (seconds)
     public float rewindDuration = 5f;      // How far back to rewind (seconds)
     private Queue<MobilState> stateHistory = new Queue<MobilState>();
-    private float lastRewindTime = 1f;      // Track the last time rewind occurred
-    public float rewindCooldown = 10f; 
+    private float lastRewindTime = 0f;      // Track the last time rewind occurred
+    public float rewindCooldown = 1f; 
+
 
     // Struct to store state
     private struct MobilState
@@ -204,4 +205,3 @@ public class mobiljalan : MonoBehaviour
     }
 
 
-}
