@@ -11,7 +11,7 @@ public class LapManager : MonoBehaviour
     public Text lapTimeText;                            // UI Text untuk menampilkan waktu lap
     public Text totalTimeText;                          // UI Text untuk menampilkan waktu total
     public Transform startFinishLine;                   // Garis Start/Finish
-    public mobiljalan carController;                    // Reference to the car controller
+   // public SimpleKartController carController;                    // Reference to the car controller
 
     private float gameStartTime;                        // Waktu mulai game
     private float lapStartTime;                         // Waktu mulai lap
@@ -94,7 +94,7 @@ public class LapManager : MonoBehaviour
     // Trigger ketika mobil melewati garis start/finish
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "raceCarGreen")
+        if (other.CompareTag("Player")) // Memeriksa tag "Player"
         {
             Debug.Log("Masuk garis Start/Finish.");
 
@@ -150,7 +150,7 @@ public class LapManager : MonoBehaviour
         totalTimeText.text = "Total Time: " + FormatTime(totalTime);
 
         // Disable the car controller to stop the car
-        carController.enabled = false;
+        //carController.enabled = false;
 
         // Anda bisa menambahkan logic tambahan di sini seperti menghentikan mobil, menunjukkan menu hasil, dsb.
     }
