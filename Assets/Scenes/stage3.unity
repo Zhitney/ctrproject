@@ -400,6 +400,7 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!1001 &209952653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -985,6 +986,8 @@ MeshCollider:
   m_Mesh: {fileID: 0}
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 --- !u!850595691 &418534109
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1330,8 +1333,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   target: {fileID: 379038170}
   offset: {x: 0, y: 10, z: 20}
+=======
+  target: {fileID: 1145517803}
+  offset: {x: 0, y: 1.29, z: -4.4}
+>>>>>>> Stashed changes
 =======
   target: {fileID: 1145517803}
   offset: {x: 0, y: 1.29, z: -4.4}
@@ -1478,7 +1486,10 @@ MonoBehaviour:
   totalTimeText: {fileID: 2081826020}
   startFinishLine: {fileID: 1007253185}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   carController: {fileID: 379038171}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
   checkpoints:
@@ -1487,12 +1498,18 @@ MonoBehaviour:
   - {fileID: 685564402}
   - {fileID: 1225502903}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!4 &1145517803 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7975222509448269785, guid: 9a1f3809038cb914f854421973c1009c, type: 3}
   m_PrefabInstance: {fileID: 1693533805}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &1189871201
 GameObject:
@@ -1831,12 +1848,15 @@ Transform:
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!4 &1526343700 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4126002952967926124, guid: 335ecf5f33af6ce4da2004cdfb27ae4a, type: 3}
   m_PrefabInstance: {fileID: 209952653}
   m_PrefabAsset: {fileID: 0}
 =======
+=======
+>>>>>>> Stashed changes
 --- !u!1001 &1693533805
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1898,6 +1918,9 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a1f3809038cb914f854421973c1009c, type: 3}
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 --- !u!1 &1805299922
 GameObject:
@@ -1968,6 +1991,7 @@ MonoBehaviour:
   checkpointIndex: 2
   lapManager: {fileID: 1007253186}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!146 &1902239382
 WheelCollider:
   m_ObjectHideFlags: 0
@@ -2028,6 +2052,8 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.4112
   m_Center: {x: 0.7970822, y: 0, z: 0}
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 --- !u!1 &2081826018
@@ -2215,7 +2241,11 @@ SceneRoots:
   - {fileID: 450635680}
   - {fileID: 1434386229}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - {fileID: 379038160}
+=======
+  - {fileID: 1693533805}
+>>>>>>> Stashed changes
 =======
   - {fileID: 1693533805}
 >>>>>>> Stashed changes
