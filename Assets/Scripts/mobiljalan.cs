@@ -31,6 +31,7 @@ public class mobiljalan : MonoBehaviour
     private float lastRewindTime = 0f;      // Track the last time rewind occurred
     public float rewindCooldown = 1f; 
 
+
     // Struct to store state
     private struct MobilState
     {
@@ -204,4 +205,3 @@ public class mobiljalan : MonoBehaviour
     }
 
 
-}

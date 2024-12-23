@@ -9,7 +9,7 @@ public class CheckpointTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.name == "raceCarGreen")
+        if (other.CompareTag("Player"))
         {
             lapManager.CheckpointReached(checkpointIndex);
         }
