@@ -323,6 +323,11 @@ MonoBehaviour:
   offset: {x: 0, y: 15, z: 30}
   smoothSpeed: 0.125
   rotationSpeed: 5
+--- !u!4 &674918408 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1278253906873026316, guid: 9c67527701a070c47af5d2b874abc223, type: 3}
+  m_PrefabInstance: {fileID: 1947416409}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &761741662
 GameObject:
   m_ObjectHideFlags: 0
@@ -417,6 +422,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!4 &818517060 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -7505996602861394818, guid: 9c67527701a070c47af5d2b874abc223, type: 3}
+  m_PrefabInstance: {fileID: 1947416409}
+  m_PrefabAsset: {fileID: 0}
 --- !u!146 &1082097452
 WheelCollider:
   m_ObjectHideFlags: 0
@@ -716,6 +726,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4126002952967926124, guid: 335ecf5f33af6ce4da2004cdfb27ae4a, type: 3}
   m_PrefabInstance: {fileID: 1705380983}
   m_PrefabAsset: {fileID: 0}
+--- !u!198 &1705380986 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8462602153847626442, guid: 335ecf5f33af6ce4da2004cdfb27ae4a, type: 3}
+  m_PrefabInstance: {fileID: 1705380983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1947416409
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -855,6 +870,11 @@ Transform:
 --- !u!1 &1947416412 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2045601653604734346, guid: 9c67527701a070c47af5d2b874abc223, type: 3}
+  m_PrefabInstance: {fileID: 1947416409}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1947416413 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -170070253108228450, guid: 9c67527701a070c47af5d2b874abc223, type: 3}
   m_PrefabInstance: {fileID: 1947416409}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1947416414 stripped
@@ -997,6 +1017,11 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.4112
   m_Center: {x: 0.7970822, y: 0, z: 0}
+--- !u!4 &1947416424 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1615017074630225307, guid: 9c67527701a070c47af5d2b874abc223, type: 3}
+  m_PrefabInstance: {fileID: 1947416409}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &1947416425
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1121,6 +1146,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9279a8ec42f14e7409f40d210b1b4618, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 10
+  turnSpeed: 100
+  acceleration: 10
+  deceleration: 5
+  maxSpeed: 15
+  brakingForce: 20
+  GreenFrontLeft: {fileID: 818517060}
+  GreenFrontRight: {fileID: 1947416413}
+  GreenBackLeft: {fileID: 674918408}
+  GreenBackRight: {fileID: 1947416424}
+  wheelRotationSpeed: 360
+  maxSteeringAngle: 30
+  smokeParticleSystem: {fileID: 1705380986}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
