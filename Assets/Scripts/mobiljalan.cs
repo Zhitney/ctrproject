@@ -204,4 +204,4 @@ public class mobiljalan : MonoBehaviour
         }
     }
 
-
+}
