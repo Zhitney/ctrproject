@@ -11,7 +11,7 @@ public class LapManager : MonoBehaviour
     public Text lapTimeText;                            // UI Text untuk menampilkan waktu lap
     public Text totalTimeText;                          // UI Text untuk menampilkan waktu total
     public Transform startFinishLine;                   // Garis Start/Finish
-    public mobiljalan carController;                    // Reference to the car controller
+    public SimpleKartController carController;                    // Reference to the car controller
 
     private float gameStartTime;                        // Waktu mulai game
     private float lapStartTime;                         // Waktu mulai lap
