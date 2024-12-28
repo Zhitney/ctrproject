@@ -4,18 +4,20 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
-{
-    public void PlayGame()
+{   
+
+    public void SelectStage(string stageName)
     {
-        SceneManager.LoadScene("nascarTrack");
+        if (GameManager.Instance == null)
+    {
+        Debug.LogError("GameManager.Instance is null. Ensure GameManager is in the scene.");
+        return;
     }
 
-    public void LoadCarSelect()
-    {
-        SceneManager.LoadScene("MainMenu");
+        GameManager.Instance.selectedStage = stageName;
+        SceneManager.LoadScene("CarSelect");
     }
-
-
+    
     public void QuitGame()
     {
         Application.Quit();

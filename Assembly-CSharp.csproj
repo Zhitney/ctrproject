@@ -65,7 +65,9 @@
   <ItemGroup>
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\AlphaButtonClickMask.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Car\Scripts\WheelEffects.cs" />
+    <Compile Include="Assets\Scripts\CarSelection.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Aircraft\Scripts\AeroplaneUserControl2Axis.cs" />
+    <Compile Include="Assets\Scripts\CarControl.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Car\Scripts\CarUserControl.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\SimpleMouseRotator.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Car\Scripts\Mudguard.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Car\Scripts\BrakeLight.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\AutoMobileShaderSwitch.cs" />
+    <Compile Include="Assets\Scripts\muter.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\MobileInput.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\CrossPlatformInput\Scripts\PlatformSpecific\StandaloneInput.cs" />
     <Compile Include="Assets\Scripts\SmokeControl.cs" />
@@ -84,7 +87,6 @@
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\AutoMoveAndRotate.cs" />
     <Compile Include="Assets\PathCreator\Core\Runtime\Objects\BezierPath.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\CrossPlatformInput\Scripts\TiltInput.cs" />
-    <Compile Include="Assets\minimapu.cs" />
     <Compile Include="Assets\Scripts\LapManager.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\PlatformSpecificContent.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\CrossPlatformInput\Scripts\Joystick.cs" />
@@ -99,8 +101,10 @@
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\TimedObjectActivator.cs" />
     <Compile Include="Assets\Scripts\checkpoint.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\CrossPlatformInput\Scripts\ButtonHandler.cs" />
+    <Compile Include="Assets\Scripts\minimapu.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Car\Scripts\Suspension.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Aircraft\Scripts\AeroplaneAiControl.cs" />
+    <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\FOVKick.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\TimedObjectDestructor.cs" />
@@ -108,6 +112,7 @@
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Aircraft\Scripts\AeroplaneControlSurfaceAnimator.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Car\Scripts\SkidTrail.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\LerpControlledBob.cs" />
+    <Compile Include="Assets\Scripts\StageManager.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Aircraft\Scripts\AeroplaneUserControl4Axis.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\SmoothFollow.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Car\Scripts\CarSelfRighting.cs" />
@@ -146,6 +151,7 @@
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
+    <None Include="Assets\Polyeler\Simple Retro Car\README.txt" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Asset-Meet11\Car02\readme.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
