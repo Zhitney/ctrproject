@@ -9,6 +9,18 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 05596c2f37098e547a3e584d3d2ad899
   - enabled: 1
+    path: Assets/Scenes/CarSelect.unity
+    guid: 36db501732faaea4cad4cb84d2a161fb
+  - enabled: 1
     path: Assets/Scenes/nascarTrack.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/stage2.unity
+    guid: e3e9dc1584267454b8c015873960be3c
+  - enabled: 1
+    path: Assets/Scenes/stage3_resolved.unity
+    guid: 90d58bd885bf5994e96e67df4871fc31
+  - enabled: 1
+    path: Assets/Scenes/stage4.unity
+    guid: 269b96d5e5de6ae49a9b182a53d80e1f
   m_configObjects: {}
