@@ -10310,7 +10310,7 @@ GameObject:
   - component: {fileID: 9126361451056418473}
   m_Layer: 0
   m_Name: KartContainer
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10363,6 +10363,9 @@ MonoBehaviour:
   smoke: {fileID: 7712381426382373685}
   turbo: {fileID: 4860771736380869106}
   jumpAnchor: {fileID: 2057051260812609511}
+  saveInterval: 0.1
+  rewindDuration: 5
+  rewindCooldown: 1
 --- !u!54 &4844848553677624255
 Rigidbody:
   m_ObjectHideFlags: 0
