@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class minimapu : MonoBehaviour
 {   
-    public Transform objHero; // Referensi ke objek mobil
+    private Transform objHero; // Referensi ke objek mobil
     public RectTransform carIndicator; // Referensi ke indikator mobil (lingkaran merah di Canvas)
     public Camera minimapCamera; // Referensi ke kamera minimap
+
+    private void Start()
+    {
+        // Cari objek dengan tag "Player"
+        objHero = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
 
     private void Update()
     {
