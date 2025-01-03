@@ -802,7 +802,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  offset: {x: 0, y: 2.29, z: -4.7}
+  offset: {x: 0, y: 4, z: -12}
   smoothSpeed: 0.125
   rotationSpeed: 5
 --- !u!1 &569846089
