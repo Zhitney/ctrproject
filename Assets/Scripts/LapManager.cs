@@ -37,15 +37,13 @@ public class LapManager : MonoBehaviour
 
     private void Start()
     {
-        AddCarsByTag("Player");
-        AddCarsByTag("Enemy");
-
-        Debug.Log($"Total cars added to progress: {carsProgress.Count}");
+        StartCoroutine(AddCarsWithDelay(2f, "Player")); // Delay of 2 seconds for Player cars
+        StartCoroutine(AddCarsWithDelay(2f, "Enemy"));  // Delay of 2 seconds for Enemy cars
 
         gameStartTime = Time.time;
         lapStartTime = gameStartTime;
-        UpdateLapUI();                                  // Inisialisasi UI saat game dimulai
-        checkpointsPassed = new HashSet<int>();         // Reset checkpoint yang sudah dilewati
+        UpdateLapUI();                                  // Initialize UI at game start
+        checkpointsPassed = new HashSet<int>();         // Reset passed checkpoints
     }
 
     private void Update()
@@ -237,8 +235,10 @@ public class LapManager : MonoBehaviour
 
 
 
-    private void AddCarsByTag(string tag)
+    private IEnumerator AddCarsWithDelay(float delay, string tag)
     {
+        yield return new WaitForSeconds(delay); // Wait for the specified delay
+
         foreach (GameObject car in GameObject.FindGameObjectsWithTag(tag))
         {
             if (car.GetComponent<Rigidbody>()) // Or any other component specific to your cars
@@ -257,5 +257,7 @@ public class LapManager : MonoBehaviour
                 Debug.Log($"Skipping non-car object with tag {tag}: {car.name}");
             }
         }
+
+        Debug.Log($"Finished adding cars with tag {tag}. Total cars: {carsProgress.Count}");
     }
 }
