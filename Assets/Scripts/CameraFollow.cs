@@ -1,5 +1,5 @@
 using System.Collections;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
@@ -17,8 +17,17 @@ public class CameraFollow : MonoBehaviour
     // Velocity for SmoothDamp
     private Vector3 velocity = Vector3.zero;
 
-     private void Start()
+    private void Start()
     {
+        // Start a coroutine to add a delay before finding the target
+        StartCoroutine(InitializeTargetWithDelay(0.5f)); // Adjust delay time as needed
+    }
+
+    private IEnumerator InitializeTargetWithDelay(float delay)
+    {
+        // Wait for the specified delay time
+        yield return new WaitForSeconds(delay);
+
         // Find the target with a specific tag
         if (target == null)
         {
@@ -26,20 +35,18 @@ public class CameraFollow : MonoBehaviour
             if (targetObject != null)
             {
                 target = targetObject.transform;
+
+                // Set initial position and orientation
+                transform.position = target.TransformPoint(offset);
+                transform.LookAt(target);
             }
             else
             {
-                Debug.LogError("Target not found. Please assign a valid target or check the tag.");
+                Debug.LogError("Target not found after delay. Please assign a valid target or check the tag.");
                 enabled = false;
-                return;
             }
         }
-
-        // Set initial position and orientation
-        transform.position = target.TransformPoint(offset);
-        transform.LookAt(target);
     }
-
 
     void FixedUpdate()
     {

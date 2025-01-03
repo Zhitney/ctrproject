@@ -25,6 +25,8 @@ public class LapManager : MonoBehaviour
     public Text rankText; // UI Text for showing rank
     private bool raceFinished = false; // Menandai apakah balapan sudah selesai
     private float finalTotalTime = 0f; // Menyimpan total waktu balapan
+    public Text countdownText; // Text UI untuk aba-aba
+    public float countdownDelay = 1f; // Waktu jeda antar aba-aba
 
     [System.Serializable]
     public class CarProgress
@@ -37,15 +39,12 @@ public class LapManager : MonoBehaviour
 
     private void Start()
     {
-        AddCarsByTag("Player");
-        AddCarsByTag("Enemy");
+        StartCoroutine(AddCarsWithDelay(2f, "Player")); // Menambahkan mobil dengan tag "Player"
+        StartCoroutine(AddCarsWithDelay(2f, "Enemy"));  // Menambahkan mobil dengan tag "Enemy"
 
-        Debug.Log($"Total cars added to progress: {carsProgress.Count}");
-
-        gameStartTime = Time.time;
-        lapStartTime = gameStartTime;
-        UpdateLapUI();                                  // Inisialisasi UI saat game dimulai
-        checkpointsPassed = new HashSet<int>();         // Reset checkpoint yang sudah dilewati
+        checkpointsPassed = new HashSet<int>(); // Reset checkpoint yang dilewati
+        countdownText.text = ""; // Kosongkan teks aba-aba saat start
+        StartCoroutine(StartCountdown()); // Mulai aba-aba
     }
 
     private void Update()
@@ -237,8 +236,10 @@ public class LapManager : MonoBehaviour
 
 
 
-    private void AddCarsByTag(string tag)
+    private IEnumerator AddCarsWithDelay(float delay, string tag)
     {
+        yield return new WaitForSeconds(delay); // Wait for the specified delay
+
         foreach (GameObject car in GameObject.FindGameObjectsWithTag(tag))
         {
             if (car.GetComponent<Rigidbody>()) // Or any other component specific to your cars
@@ -257,5 +258,40 @@ public class LapManager : MonoBehaviour
                 Debug.Log($"Skipping non-car object with tag {tag}: {car.name}");
             }
         }
+
+        Debug.Log($"Finished adding cars with tag {tag}. Total cars: {carsProgress.Count}");
     }
+
+
+    private IEnumerator StartCountdown()
+    {
+            // Pause the game
+        Time.timeScale = 0f;
+
+        string[] countdownSequence = { "3", "2", "1", "Go!" }; // Aba-aba
+        for (int i = 0; i < countdownSequence.Length; i++)
+        {
+            countdownText.text = countdownSequence[i]; // Display the countdown text
+
+            // Wait for the real-time delay to display the countdown text
+            yield return new WaitForSecondsRealtime(countdownDelay);
+        }
+
+        countdownText.text = ""; // Clear the countdown text
+
+        // Resume the game
+        Time.timeScale = 1f;
+
+        StartRace(); // Start the race
+    }
+
+
+    private void StartRace()
+{
+    Debug.Log("Race Started!");
+    gameStartTime = Time.time; // Catat waktu mulai balapan
+    lapStartTime = gameStartTime;
+    UpdateLapUI(); // Update UI awal
+}
+
 }
