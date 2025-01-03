@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\CarControl.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\CrossPlatformInput\Scripts\InputAxisScrollbar.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Car\Scripts\CarUserControl.cs" />
+    <Compile Include="Assets\Scripts\CarTrackManager.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\SimpleMouseRotator.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\CrossPlatformInput\Scripts\VirtualInput.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Car\Scripts\Mudguard.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\CameraFollow.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\FOVKick.cs" />
+    <Compile Include="Assets\nyoba\kart\Script\BotKartController.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\TimedObjectDestructor.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\FPSCounter.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Aircraft\Scripts\AeroplaneControlSurfaceAnimator.cs" />
