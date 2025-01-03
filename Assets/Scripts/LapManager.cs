@@ -25,6 +25,8 @@ public class LapManager : MonoBehaviour
     public Text rankText; // UI Text for showing rank
     private bool raceFinished = false; // Menandai apakah balapan sudah selesai
     private float finalTotalTime = 0f; // Menyimpan total waktu balapan
+    public Text countdownText; // Text UI untuk aba-aba
+    public float countdownDelay = 1f; // Waktu jeda antar aba-aba
 
     [System.Serializable]
     public class CarProgress
@@ -37,13 +39,12 @@ public class LapManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(AddCarsWithDelay(2f, "Player")); // Delay of 2 seconds for Player cars
-        StartCoroutine(AddCarsWithDelay(2f, "Enemy"));  // Delay of 2 seconds for Enemy cars
+        StartCoroutine(AddCarsWithDelay(2f, "Player")); // Menambahkan mobil dengan tag "Player"
+        StartCoroutine(AddCarsWithDelay(2f, "Enemy"));  // Menambahkan mobil dengan tag "Enemy"
 
-        gameStartTime = Time.time;
-        lapStartTime = gameStartTime;
-        UpdateLapUI();                                  // Initialize UI at game start
-        checkpointsPassed = new HashSet<int>();         // Reset passed checkpoints
+        checkpointsPassed = new HashSet<int>(); // Reset checkpoint yang dilewati
+        countdownText.text = ""; // Kosongkan teks aba-aba saat start
+        StartCoroutine(StartCountdown()); // Mulai aba-aba
     }
 
     private void Update()
@@ -260,4 +261,37 @@ public class LapManager : MonoBehaviour
 
         Debug.Log($"Finished adding cars with tag {tag}. Total cars: {carsProgress.Count}");
     }
+
+
+    private IEnumerator StartCountdown()
+    {
+            // Pause the game
+        Time.timeScale = 0f;
+
+        string[] countdownSequence = { "3", "2", "1", "Go!" }; // Aba-aba
+        for (int i = 0; i < countdownSequence.Length; i++)
+        {
+            countdownText.text = countdownSequence[i]; // Display the countdown text
+
+            // Wait for the real-time delay to display the countdown text
+            yield return new WaitForSecondsRealtime(countdownDelay);
+        }
+
+        countdownText.text = ""; // Clear the countdown text
+
+        // Resume the game
+        Time.timeScale = 1f;
+
+        StartRace(); // Start the race
+    }
+
+
+    private void StartRace()
+{
+    Debug.Log("Race Started!");
+    gameStartTime = Time.time; // Catat waktu mulai balapan
+    lapStartTime = gameStartTime;
+    UpdateLapUI(); // Update UI awal
+}
+
 }
