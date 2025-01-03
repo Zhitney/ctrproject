@@ -44,7 +44,10 @@ public class LapManager : MonoBehaviour
 
         checkpointsPassed = new HashSet<int>(); // Reset checkpoint yang dilewati
         countdownText.text = ""; // Kosongkan teks aba-aba saat start
-        StartCoroutine(StartCountdown()); // Mulai aba-aba
+        gameStartTime = Time.time; // Catat waktu mulai balapan
+        lapStartTime = gameStartTime;
+        UpdateLapUI(); // Update UI awal
+        
     }
 
     private void Update()
@@ -289,9 +292,7 @@ public class LapManager : MonoBehaviour
     private void StartRace()
 {
     Debug.Log("Race Started!");
-    gameStartTime = Time.time; // Catat waktu mulai balapan
-    lapStartTime = gameStartTime;
-    UpdateLapUI(); // Update UI awal
+    
 }
 
 }
