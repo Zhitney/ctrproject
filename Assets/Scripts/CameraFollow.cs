@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
     public Transform target;
 
     // Offset from the target's position
-    public Vector3 offset = new Vector3(0, 2, -5);
+    public Vector3 offset = new Vector3(0, 4, -12);
 
     // How smooth the camera follows the target
     public float smoothSpeed = 0.125f;
@@ -16,6 +16,30 @@ public class CameraFollow : MonoBehaviour
 
     // Velocity for SmoothDamp
     private Vector3 velocity = Vector3.zero;
+
+     private void Start()
+    {
+        // Find the target with a specific tag
+        if (target == null)
+        {
+            GameObject targetObject = GameObject.FindWithTag("Player");
+            if (targetObject != null)
+            {
+                target = targetObject.transform;
+            }
+            else
+            {
+                Debug.LogError("Target not found. Please assign a valid target or check the tag.");
+                enabled = false;
+                return;
+            }
+        }
+
+        // Set initial position and orientation
+        transform.position = target.TransformPoint(offset);
+        transform.LookAt(target);
+    }
+
 
     void FixedUpdate()
     {

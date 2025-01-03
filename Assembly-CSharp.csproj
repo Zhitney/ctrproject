@@ -70,6 +70,7 @@
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\SimpleMouseRotator.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\CrossPlatformInput\Scripts\VirtualInput.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Car\Scripts\Mudguard.cs" />
+    <Compile Include="Assets\Scripts\CarProgress.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Car\Scripts\BrakeLight.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\AutoMobileShaderSwitch.cs" />
     <Compile Include="Assets\Scripts\muter.cs" />
@@ -108,6 +109,7 @@
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\FPSCounter.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Aircraft\Scripts\AeroplaneControlSurfaceAnimator.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Car\Scripts\SkidTrail.cs" />
+    <Compile Include="Assets\Scripts\CheckpointManager.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Utility\LerpControlledBob.cs" />
     <Compile Include="Assets\Scripts\StageManager.cs" />
     <Compile Include="Assets\Asset-Meet12\Standard Assets\Vehicles\Aircraft\Scripts\AeroplaneUserControl4Axis.cs" />
