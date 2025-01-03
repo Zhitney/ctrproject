@@ -8,6 +8,7 @@ public class StageManager : MonoBehaviour
     public GameObject[] cars; // Assign all car prefabs here
     public GameObject[] enemyCars; // Assign all enemy car prefabs here
     public Transform[] enemySpawnPoints; // Assign all enemy spawn points here
+    public Transform[] EnemyPaths; // Each Transform is a "folder" of waypoints
 
     private void Start()
     {
@@ -30,11 +31,9 @@ public class StageManager : MonoBehaviour
 
     void SpawnEnemyCars()
     {
-    // Create a list to track available enemy cars
-    List<GameObject> availableEnemyCars = new List<GameObject>(enemyCars);
+        List<GameObject> availableEnemyCars = new List<GameObject>(enemyCars);
 
-    // Loop through each spawn point
-        foreach (Transform spawnPoint in enemySpawnPoints)
+        for (int i = 0; i < enemySpawnPoints.Length; i++)
         {
             if (availableEnemyCars.Count == 0)
             {
@@ -42,7 +41,10 @@ public class StageManager : MonoBehaviour
                 break;
             }
 
-            // Select a random car that is not the selected player's car
+            // Get the spawn point
+            Transform spawnPoint = enemySpawnPoints[i];
+
+            // Get a random car that is not the player's car
             GameObject randomCar;
             int randomIndex;
             do
@@ -52,11 +54,56 @@ public class StageManager : MonoBehaviour
             }
             while (randomCar.name == GameManager.Instance.selectedCar);
 
-            // Instantiate the selected enemy car
-            Instantiate(randomCar, spawnPoint.position, spawnPoint.rotation);
+            // Instantiate the enemy car
+            GameObject spawnedCar = Instantiate(randomCar, spawnPoint.position, spawnPoint.rotation);
 
-            // Remove the spawned car from the list to avoid duplication
+            // Ensure it has a BotKartController component
+            BotKartController botController = spawnedCar.GetComponent<BotKartController>();
+            if (botController == null)
+            {
+                botController = spawnedCar.AddComponent<BotKartController>();
+            }
+
+            // Assign the paths to the BotKartController
+            if (i < EnemyPaths.Length)
+            {
+                Transform pathParent = EnemyPaths[i];
+                Transform[] waypoints = GetChildTransforms(pathParent);
+                botController.SetWaypoints(waypoints);
+            }
+            else
+            {
+                Debug.LogWarning("Not enough paths available for all enemies!");
+            }
+
+            // Add a Rigidbody to ensure physics interaction
+            Rigidbody rb = spawnedCar.GetComponent<Rigidbody>();
+            if (rb == null)
+            {
+                rb = spawnedCar.AddComponent<Rigidbody>();
+                rb.useGravity = true; // Optional, depending on your needs
+            }
+
+            // Remove the spawned car from the available pool
             availableEnemyCars.RemoveAt(randomIndex);
         }
+    }
+
+    /// <summary>
+    /// Retrieves all child transforms of a parent Transform.
+    /// </summary>
+    /// <param name="parent">The parent Transform.</param>
+    /// <returns>An array of child Transforms.</returns>
+    private Transform[] GetChildTransforms(Transform parent)
+    {
+        int childCount = parent.childCount;
+        Transform[] childTransforms = new Transform[childCount];
+
+        for (int i = 0; i < childCount; i++)
+        {
+            childTransforms[i] = parent.GetChild(i);
+        }
+
+        return childTransforms;
     }
 }
