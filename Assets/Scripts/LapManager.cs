@@ -41,6 +41,7 @@ public class LapManager : MonoBehaviour
         AddCarsByTag("Enemy");
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         checkpointsPassed = new HashSet<int>(); // Reset checkpoint yang dilewati
         countdownText.text = ""; // Kosongkan teks aba-aba saat start
         gameStartTime = Time.time; // Catat waktu mulai balapan
@@ -48,13 +49,18 @@ public class LapManager : MonoBehaviour
         UpdateLapUI(); // Update UI awal
         
 =======
+=======
+>>>>>>> parent of 6473e954 (stage4 rank)
         Debug.Log($"Total cars added to progress: {carsProgress.Count}");
 
         gameStartTime = Time.time;
         lapStartTime = gameStartTime;
         UpdateLapUI();                                  // Inisialisasi UI saat game dimulai
         checkpointsPassed = new HashSet<int>();         // Reset checkpoint yang sudah dilewati
+<<<<<<< HEAD
 >>>>>>> parent of e5574192 (Merge pull request #18 from Zhitney/ui-polishing)
+=======
+>>>>>>> parent of 6473e954 (stage4 rank)
     }
 
     private void Update()
