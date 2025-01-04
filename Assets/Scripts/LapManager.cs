@@ -25,8 +25,6 @@ public class LapManager : MonoBehaviour
     public Text rankText; // UI Text for showing rank
     private bool raceFinished = false; // Menandai apakah balapan sudah selesai
     private float finalTotalTime = 0f; // Menyimpan total waktu balapan
-    public Text countdownText; // Text UI untuk aba-aba
-    public float countdownDelay = 1f; // Waktu jeda antar aba-aba
 
     [System.Serializable]
     public class CarProgress
@@ -39,15 +37,24 @@ public class LapManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(AddCarsWithDelay(2f, "Player")); // Menambahkan mobil dengan tag "Player"
-        StartCoroutine(AddCarsWithDelay(2f, "Enemy"));  // Menambahkan mobil dengan tag "Enemy"
+        AddCarsByTag("Player");
+        AddCarsByTag("Enemy");
 
+<<<<<<< HEAD
         checkpointsPassed = new HashSet<int>(); // Reset checkpoint yang dilewati
         countdownText.text = ""; // Kosongkan teks aba-aba saat start
         gameStartTime = Time.time; // Catat waktu mulai balapan
         lapStartTime = gameStartTime;
         UpdateLapUI(); // Update UI awal
         
+=======
+        Debug.Log($"Total cars added to progress: {carsProgress.Count}");
+
+        gameStartTime = Time.time;
+        lapStartTime = gameStartTime;
+        UpdateLapUI();                                  // Inisialisasi UI saat game dimulai
+        checkpointsPassed = new HashSet<int>();         // Reset checkpoint yang sudah dilewati
+>>>>>>> parent of e5574192 (Merge pull request #18 from Zhitney/ui-polishing)
     }
 
     private void Update()
@@ -239,10 +246,8 @@ public class LapManager : MonoBehaviour
 
 
 
-    private IEnumerator AddCarsWithDelay(float delay, string tag)
+    private void AddCarsByTag(string tag)
     {
-        yield return new WaitForSeconds(delay); // Wait for the specified delay
-
         foreach (GameObject car in GameObject.FindGameObjectsWithTag(tag))
         {
             if (car.GetComponent<Rigidbody>()) // Or any other component specific to your cars
@@ -261,9 +266,8 @@ public class LapManager : MonoBehaviour
                 Debug.Log($"Skipping non-car object with tag {tag}: {car.name}");
             }
         }
-
-        Debug.Log($"Finished adding cars with tag {tag}. Total cars: {carsProgress.Count}");
     }
+<<<<<<< HEAD
 
 
     private IEnumerator StartCountdown()
@@ -295,4 +299,6 @@ public class LapManager : MonoBehaviour
     
 }
 
+=======
+>>>>>>> parent of e5574192 (Merge pull request #18 from Zhitney/ui-polishing)
 }
